@@ -4,30 +4,31 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+
+import com.worldGeneration.WorldGenerator;
 
 	public class Engine{
 		JFrame gameFrame;
 	public static void main(String[] args) {
 		JFrame gameFrame = new JFrame();
 		
-		gameFrame.setSize(512 * 2, 256 * 2);
+		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+	
+			WorldGenerator.loadBlockHashMap();
+		
+		gameFrame.setSize(screenWidth/2,screenHeight/2);
+		gameFrame.setLocation(screenWidth/4, screenHeight/4);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true); 
-		
-		Color red = new Color(255, 0, 0);
-		Color blue = new Color(0, 0, 255);
-		
-		Image image;
-		
-		gameFrame.getContentPane().setBackground(red);
-		
-		Graphics draw = gameFrame.getContentPane().getGraphics();
-		draw.setColor(blue);
-		
-		draw.drawRect(50, 50, 500, 500);
-		gameFrame.repaint();
+		gameFrame.add(new drawingComponent());
+		while(true) {
+			gameFrame.repaint();
+		}
 	}
 	
 	public JFrame returnFrame() {
