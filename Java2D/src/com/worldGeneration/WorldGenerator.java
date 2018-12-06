@@ -11,22 +11,22 @@ import javax.imageio.ImageIO;
 
 public class WorldGenerator{
 	static int[][] world = new int[][]{
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,7,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 	
 	static Map<Integer, BufferedImage> blocks = new HashMap<>();
@@ -38,16 +38,18 @@ public class WorldGenerator{
 	public static void loadBlockHashMap() {
 		blocks = new HashMap<>();
 		blocks.put(0, loadImage("graphics/sky.jpg"));
-		System.out.println("Sky loaded!");
 		blocks.put(1, loadImage("graphics/dirt.jpg"));
-		System.out.println("Dirt loaded!");
 		blocks.put(2, loadImage("graphics/grass.jpg"));
-		System.out.println("Grass loaded!");
+		blocks.put(3, loadImage("graphics/stone.jpg"));
+		blocks.put(4, loadImage("graphics/stoneBroken.jpg"));
+		blocks.put(5, loadImage("graphics/stoneBroken2.jpg"));
+		blocks.put(6, loadImage("graphics/stoneBroken3.jpg"));
+		blocks.put(7, loadImage("graphics/water.jpg"));
+
 	}
 	
 	public static BufferedImage loadBlock(int x, int y) {
-		System.out.println("Got block # " + getBlockID(x,y));
-		System.out.println(blocks.get(getBlockID(x,y)).getWidth());
+//		System.out.println("Got block # " + getBlockID(x,y));
 		return blocks.get(getBlockID(x,y));	
 	}
 	
