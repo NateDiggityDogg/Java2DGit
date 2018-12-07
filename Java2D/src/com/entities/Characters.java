@@ -1,15 +1,27 @@
 package com.entities;
 
+import java.awt.Image;
+
 public class Characters {
-	static double xLocation;
-	static double yLocation;
 	
-	public void spawnAt(double x, double y) {
-		xLocation = x;
-		yLocation = y;
+	int defaultXLoc;
+	int defaultYLoc;
+	
+	Image charSprite;
+	
+	
+	Characters(String entityID){
+	defaultXLoc = 200;
+	defaultYLoc = 200;
+	charSprite = convertString(entityID);
 	}
 	
-	public void update(){
-		xLocation = xLocation += 15;
+	static Image convertString(String entityID) {
+		return com.engine.drawingComponent.loadImage(entityID);
 	}
+	
+	public Image returnSprite() {
+		return charSprite;
+	}
+	
 }

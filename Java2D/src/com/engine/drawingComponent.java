@@ -17,53 +17,48 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
 
 public class drawingComponent extends JComponent {
 
 	static Font font;
+	static Player p1 = Engine.p1;
 
 	public void paintComponent(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		drawWorld(g2d);
+		drawEntities(g2d);
+	}
+	
+	public void drawWorld(Graphics2D g2d) {
+		
 		int frameWidth = super.getWidth();
 		int frameHeight = super.getHeight();
-
-		Graphics2D g2d = (Graphics2D) g;
-
-		System.out.println("draw!");
-//		for(int xPixel=frameWidth;xPixel>= frameWidth/8;xPixel-=frameWidth/16) {
-//		for(int yPixel=frameHeight;yPixel>= frameHeight/8;yPixel-=frameHeight/16) {
-//			int blockX = xPixel/frameWidth*16-1;
-//			//System.out.println("BlockX: " + blockX);
-//			int blockY = yPixel/frameHeight*16-1;
-//			//System.out.println("BlockY: " + blockY);
-//			g2d.drawImage(WorldGenerator.loadBlock(blockX, blockY), xPixel-frameWidth/16, yPixel-frameHeight/16, null);
-//		}
-//	}
 		
 		for(double xPixel=0;xPixel<frameWidth;xPixel+=(frameWidth/16)) {
-		for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
-		int xBlock =(int) Math.floor((xPixel/frameWidth)*16);
-		int yBlock =(int) Math.floor((yPixel/frameHeight)*16);
-		
-		System.out.println(xPixel+" "+yPixel+" "+frameWidth+" "+frameHeight);
-		
-		System.out.println(yPixel/frameHeight*16);
-		System.out.println(yBlock);
-		
-		int xLocation =(int) Math.round(frameWidth - xPixel);
-		int yLocation =(int) Math.round(frameHeight - yPixel);
-		
-		int xScale = frameWidth/16;
-		int yScale = frameHeight/16;
-		
-		g2d.drawImage(WorldGenerator.loadBlock(xBlock, yBlock), xLocation, yLocation, xScale, yScale, null);
-		
-		}
-		}
-		
+			for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
+			int xBlock =(int) Math.floor((xPixel/frameWidth)*16);
+			int yBlock =(int) Math.floor((yPixel/frameHeight)*16);
+			
+			int xLocation =(int) Math.round(frameWidth - xPixel);
+			int yLocation =(int) Math.round(frameHeight - yPixel);
+			
+			int xScale = frameWidth/16;
+			int yScale = frameHeight/16;
+			
+			g2d.drawImage(WorldGenerator.loadBlock(xBlock, yBlock), xLocation, yLocation, xScale, yScale, null);
+			
+			}
+			}
+	}
+	
+	public void drawEntities(Graphics2D g2d) {
+		System.out.println(p1.xLoc + p1.yLoc);
+		g2d.drawImage(p1.returnSprite(), p1.xLoc, p1.yLoc, null);
 	}
 
-	public BufferedImage loadImage(String imageName) {
+	public static BufferedImage loadImage(String imageName) {
 
 		try {
 			BufferedImage image = ImageIO.read(new File(imageName));

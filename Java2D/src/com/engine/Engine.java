@@ -9,11 +9,15 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
 
 	public class Engine{
 		JFrame gameFrame;
+		static Player p1;
 	public static void main(String[] args) {
+		p1 = new Player();
+		
 		JFrame gameFrame = new JFrame();
 		
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -26,12 +30,17 @@ import com.worldGeneration.WorldGenerator;
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true); 
 		gameFrame.add(new drawingComponent());
-		while(true) {
-			gameFrame.repaint();
-		}
+		
+//		while(true) {
+//			gameFrame.repaint();
+//		}
 	}
 	
 	public JFrame returnFrame() {
 		return gameFrame;
+	}
+	
+	public Player getPlayer1() {
+		return p1;
 	}
 }
