@@ -40,7 +40,7 @@ import com.worldGeneration.WorldGenerator;
 		return gameFrame;
 	}
 	
-	public Player getPlayer1() {
+	public static Player returnPlayer() {
 		return p1;
 	}
 }

@@ -23,7 +23,7 @@ import com.worldGeneration.WorldGenerator;
 public class drawingComponent extends JComponent {
 
 	static Font font;
-	static Player p1 = Engine.p1;
+	Player p1 = Engine.returnPlayer();
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
