@@ -24,6 +24,9 @@ public class drawingComponent extends JComponent {
 
 	static Font font;
 	Player p1 = Engine.returnPlayer();
+	
+	int frameWidth = super.getWidth();
+	int frameHeight = super.getHeight();
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -33,8 +36,8 @@ public class drawingComponent extends JComponent {
 	
 	public void drawWorld(Graphics2D g2d) {
 		
-		int frameWidth = super.getWidth();
-		int frameHeight = super.getHeight();
+		frameWidth = super.getWidth();
+		frameHeight = super.getHeight();
 		
 		for(double xPixel=0;xPixel<frameWidth;xPixel+=(frameWidth/16)) {
 			for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
@@ -55,7 +58,7 @@ public class drawingComponent extends JComponent {
 	
 	public void drawEntities(Graphics2D g2d) {
 		System.out.println(p1.xLoc + p1.yLoc);
-		g2d.drawImage(p1.returnSprite(), p1.xLoc, p1.yLoc, null);
+		g2d.drawImage(p1.returnSprite(), 0, 0, frameWidth, frameHeight, null);
 	}
 
 	public static BufferedImage loadImage(String imageName) {
