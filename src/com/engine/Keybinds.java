@@ -11,6 +11,7 @@ public class Keybinds implements KeyListener {
 	public static boolean A = false;
 	public static boolean S = false;
 	public static boolean D = false;
+	public static boolean SHIFT = false;
 
 	public void keyPressed(KeyEvent e) {
 		int keyInfo = e.getKeyCode();
@@ -29,6 +30,10 @@ public class Keybinds implements KeyListener {
 		
 		if(keyInfo == KeyEvent.VK_D) {
 			D=true;
+		}
+		
+		if(keyInfo == KeyEvent.VK_SHIFT) {
+			SHIFT=true;
 		}
 		
 	}
@@ -50,6 +55,10 @@ public class Keybinds implements KeyListener {
 		
 		if(keyInfo == KeyEvent.VK_D) {
 			D=false;
+		}
+		
+		if(keyInfo == KeyEvent.VK_SHIFT) {
+			SHIFT=false;
 		}
 		
 	}

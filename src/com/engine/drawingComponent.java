@@ -39,26 +39,31 @@ public class drawingComponent extends JComponent {
 		frameWidth = super.getWidth();
 		frameHeight = super.getHeight();
 		
-		for(double xPixel=0;xPixel<frameWidth;xPixel+=(frameWidth/16)) {
-			for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
-			int xBlock =(int) Math.floor((xPixel/frameWidth)*16);
-			int yBlock =(int) Math.floor((yPixel/frameHeight)*16);
-			
-			int xLocation =(int) Math.round(frameWidth - xPixel);
-			int yLocation =(int) Math.round(frameHeight - yPixel);
-			
-			int xScale = frameWidth/16;
-			int yScale = frameHeight/16;
-			
-			g2d.drawImage(WorldGenerator.loadBlock(xBlock, yBlock), xLocation, yLocation, xScale, yScale, null);
-			
-			}
-			}
+//		for(double xPixel=0;xPixel<frameWidth;xPixel+=(frameWidth/16)) {
+//			for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
+//			int xBlock =(int) Math.floor((xPixel/frameWidth)*16);
+//			int yBlock =(int) Math.floor((yPixel/frameHeight)*16);
+//			
+//			int xLocation =(int) Math.round(frameWidth - xPixel);
+//			int yLocation =(int) Math.round(frameHeight - yPixel);
+//			
+//			int xScale = frameWidth/16;
+//			int yScale = frameHeight/16;
+//			
+//			g2d.drawImage(WorldGenerator.loadBlock(xBlock, yBlock), xLocation, yLocation, xScale, yScale, null);
+//			
+//			}
+//			}
 	}
 	
 	public void drawEntities(Graphics2D g2d) {
-		System.out.println(p1.xLoc + p1.yLoc);
 		g2d.drawImage(p1.returnSprite(), p1.xLoc, p1.yLoc, frameWidth, frameHeight, null);
+	}
+	
+	public Object[] drawFromCenter(Image i, int xLoc, int yLoc, int width, int height) {
+		Object[] output = new Object[5];
+		return output;
+		
 	}
 
 	public static BufferedImage loadImage(String imageName) {

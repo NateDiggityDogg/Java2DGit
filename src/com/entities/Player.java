@@ -2,6 +2,7 @@ package com.entities;
 
 import java.awt.Image;
 
+import com.engine.Engine;
 import com.engine.Keybinds;
 
 public class Player extends Characters{
@@ -9,27 +10,34 @@ public class Player extends Characters{
 	public int xLoc;
 	public int yLoc;
 	
+	public double runSpeed = 2;
+	
 	Image charSprite;
 	
 	public Player() {
 		super("graphics/mario.png");
-		xLoc = 200;
-		yLoc = 200;
+		xLoc = Engine.screenWidth/2;
+		yLoc = Engine.screenHeight/2;
 		charSprite = super.charSprite;
 	}
 	
 	public void update() {
 		if(Keybinds.A) {
-			xLoc-=2;
+			xLoc-=runSpeed;
 		}
 		if(Keybinds.W) {
-			yLoc+=2;
+			yLoc+=runSpeed;
 		}
 		if(Keybinds.S) {
-			yLoc-=2;
+			yLoc-=runSpeed;
 		}
 		if(Keybinds.D) {
-			xLoc+=2;
+			xLoc+=runSpeed;
+		}
+		if(Keybinds.SHIFT) {
+			runSpeed = 3;
+		}else {
+			runSpeed = 2;
 		}
 	}
 	

@@ -15,12 +15,16 @@ import com.worldGeneration.WorldGenerator;
 	public class Engine{
 		static JFrame gameFrame;
 		static Player p1;
+		
+		public static int screenWidth;
+		public static int screenHeight;
 	public static void main(String[] args) {
-		p1 = new Player();
-		gameFrame = new JFrame();
 		
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		
+		p1 = new Player();
+		gameFrame = new JFrame();
 	
 			WorldGenerator.loadBlockHashMap();
 		
@@ -34,7 +38,7 @@ import com.worldGeneration.WorldGenerator;
 		while(true) {
 			tick();
 			try {
-				Thread.sleep(5);
+				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
