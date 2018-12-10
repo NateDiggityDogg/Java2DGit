@@ -13,12 +13,11 @@ import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
 
 	public class Engine{
-		JFrame gameFrame;
+		static JFrame gameFrame;
 		static Player p1;
 	public static void main(String[] args) {
 		p1 = new Player();
-		
-		JFrame gameFrame = new JFrame();
+		gameFrame = new JFrame();
 		
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -28,19 +27,30 @@ import com.worldGeneration.WorldGenerator;
 		gameFrame.setSize(screenWidth/2,screenHeight/2);
 		gameFrame.setLocation(screenWidth/4, screenHeight/4);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameFrame.addKeyListener(new Keybinds());
 		gameFrame.setVisible(true); 
 		gameFrame.add(new drawingComponent());
 		
-//		while(true) {
-//			gameFrame.repaint();
-//		}
+		while(true) {
+			tick();
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			gameFrame.repaint();
+		}
 	}
 	
-	public JFrame returnFrame() {
+	public static JFrame returnFrame() {
 		return gameFrame;
 	}
 	
 	public static Player returnPlayer() {
 		return p1;
+	}
+	
+	public static void tick() {
+		p1.update();
 	}
 }

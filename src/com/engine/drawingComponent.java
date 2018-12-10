@@ -58,7 +58,7 @@ public class drawingComponent extends JComponent {
 	
 	public void drawEntities(Graphics2D g2d) {
 		System.out.println(p1.xLoc + p1.yLoc);
-		g2d.drawImage(p1.returnSprite(), 0, 0, frameWidth, frameHeight, null);
+		g2d.drawImage(p1.returnSprite(), p1.xLoc, p1.yLoc, frameWidth, frameHeight, null);
 	}
 
 	public static BufferedImage loadImage(String imageName) {
