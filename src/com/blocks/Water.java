@@ -5,10 +5,9 @@ import java.awt.Image;
 import com.worldGeneration.WorldGenerator;
 
 public class Water extends Blocks{
-	boolean solid = true;
-	boolean affectedByGravity = false;
-	Image image = WorldGenerator.loadImage("graphics/water.jpg");
-	public Image returnImage() {
-		return this.image;
-	}
+	public Water(){
+		this.solid = true;
+		this.affectedByGravity = false;
+		this.image = WorldGenerator.loadImage("graphics/water.jpg");
+		}
 }

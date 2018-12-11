@@ -5,10 +5,9 @@ import java.awt.Image;
 import com.worldGeneration.WorldGenerator;
 
 public class Dirt extends Blocks{
-	boolean solid = true;
-	boolean affectedByGravity = false;
-	Image image = WorldGenerator.loadImage("graphics/dirt.jpg");
-	public Image returnImage() {
-		return this.image;
+	public Dirt(){
+	this.solid = true;
+	this.affectedByGravity = false;
+	this.image = WorldGenerator.loadImage("graphics/dirt.jpg");
 	}
 }
