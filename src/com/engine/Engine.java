@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
@@ -18,6 +19,9 @@ import com.worldGeneration.WorldGenerator;
 		
 		public static int screenWidth;
 		public static int screenHeight;
+		
+		public int frameWidth;
+		public int frameHeight;
 	public static void main(String[] args) {
 		
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -27,18 +31,19 @@ import com.worldGeneration.WorldGenerator;
 		gameFrame = new JFrame();
 	
 			WorldGenerator.loadBlockHashMap();
+			WorldGenerator.loadMapHashMap();
 		
 		gameFrame.setSize(screenWidth/2,screenHeight/2);
 		gameFrame.setLocation(screenWidth/4, screenHeight/4);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.addKeyListener(new Keybinds());
-		gameFrame.setVisible(true); 
 		gameFrame.add(new drawingComponent());
+		gameFrame.setVisible(true); 
 		
 		while(true) {
 			tick();
 			try {
-				Thread.sleep(2);
+				Thread.sleep(5);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

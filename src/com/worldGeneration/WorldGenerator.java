@@ -29,10 +29,16 @@ public class WorldGenerator{
 			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 	
+	static Map<String, Integer> map = new HashMap<>();
 	static Map<Integer, BufferedImage> blocks = new HashMap<>();
-			
-	public static int getBlockID(int x, int y) {
-		return world[x][y];
+	
+	public static void loadMapHashMap() {
+		map = new HashMap<>();
+		for(int i=0;i<16;i++) {
+			for(int k=0;k<16;k++) {
+				map.put(i+"x"+k, world[i][k]);
+			}
+		}
 	}
 	
 	public static void loadBlockHashMap() {
@@ -48,6 +54,11 @@ public class WorldGenerator{
 
 	}
 	
+	public static int getBlockID(int x, int y) {
+//		return world[x][y];
+		return map.get(x+"x"+y);
+	}
+	
 	public static BufferedImage loadBlock(int x, int y) {
 //		System.out.println("Got block # " + getBlockID(x,y));
 		return blocks.get(getBlockID(x,y));	
@@ -59,7 +70,7 @@ public class WorldGenerator{
 			BufferedImage image = ImageIO.read(new File(imageName));
 			return image;
 		} catch (IOException e) {
-			System.out.println("loadImage error!");
+			System.out.println("WorldGenerator.loadImage error!");
 			e.printStackTrace();
 			return null;
 		}

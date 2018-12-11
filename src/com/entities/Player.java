@@ -7,23 +7,35 @@ import com.engine.Keybinds;
 
 public class Player extends Characters{
 
-	public int xLoc;
-	public int yLoc;
+	public double xLoc;
+	public double yLoc;
 	
-	public double runSpeed = 2;
+	public int width;
+	public int regularWidth=32;
+	public int mirroredWidth=-32;
+	public int height;
+	
+	public boolean facingRight;
+	
+	public double defaultRunSpeed = 0.1;
+	public double runSpeed = defaultRunSpeed;
 	
 	Image charSprite;
 	
 	public Player() {
 		super("graphics/mario.png");
-		xLoc = Engine.screenWidth/2;
-		yLoc = Engine.screenHeight/2;
+		xLoc = 0;
+		yLoc = 0;
+		width = regularWidth;
+		height = 64;
+		facingRight = false;
 		charSprite = super.charSprite;
 	}
 	
 	public void update() {
 		if(Keybinds.A) {
 			xLoc-=runSpeed;
+			facingRight=false;
 		}
 		if(Keybinds.W) {
 			yLoc+=runSpeed;
@@ -33,12 +45,20 @@ public class Player extends Characters{
 		}
 		if(Keybinds.D) {
 			xLoc+=runSpeed;
+			facingRight=true;
 		}
 		if(Keybinds.SHIFT) {
-			runSpeed = 3;
+			runSpeed = defaultRunSpeed*1.5;
 		}else {
-			runSpeed = 2;
+			runSpeed = defaultRunSpeed;
 		}
+		if(facingRight) {
+			width = mirroredWidth;
+		}
+		if(!facingRight) {
+			width = regularWidth;
+		}
+		
 	}
 	
 }

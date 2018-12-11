@@ -27,6 +27,9 @@ public class drawingComponent extends JComponent {
 	
 	int frameWidth = super.getWidth();
 	int frameHeight = super.getHeight();
+	
+	int xBlockCount = 16;
+	int yBlockCount = 16;
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -54,16 +57,23 @@ public class drawingComponent extends JComponent {
 //			
 //			}
 //			}
+		
+		for(int i=0;i<xBlockCount;i++) {
+			for(int k=0;k<yBlockCount;k++) {
+			
+			drawFromCenter(WorldGenerator.loadBlock(i, k), i, k, 32, 32, g2d);
+			}
+		}
+		
 	}
 	
 	public void drawEntities(Graphics2D g2d) {
-		g2d.drawImage(p1.returnSprite(), p1.xLoc, p1.yLoc, frameWidth, frameHeight, null);
+		drawFromCenter(p1.returnSprite(), p1.xLoc, p1.yLoc, p1.width, p1.height, g2d);
 	}
 	
-	public Object[] drawFromCenter(Image i, int xLoc, int yLoc, int width, int height) {
-		Object[] output = new Object[5];
-		return output;
-		
+	public void drawFromCenter(Image i, double xLoc, double yLoc, int width, int height, Graphics2D g2d) {
+		System.out.println(p1.xLoc+"x"+p1.yLoc);
+		g2d.drawImage(i, (int) (xLoc*32-width/2), (int) (frameHeight-(yLoc*32-height/2)),width,height,null);
 	}
 
 	public static BufferedImage loadImage(String imageName) {
