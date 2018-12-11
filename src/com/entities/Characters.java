@@ -7,7 +7,12 @@ public class Characters {
 	int defaultXLoc;
 	int defaultYLoc;
 	
+	double horizontalVelocity;
+	double verticalVelocity;
+	
 	Image charSprite;
+	
+	public boolean affectedByGravity;
 	
 	
 	Characters(String entityID){

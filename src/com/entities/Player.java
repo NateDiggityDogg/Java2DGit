@@ -24,8 +24,8 @@ public class Player extends Characters{
 	
 	public Player() {
 		super("graphics/mario.png");
-		xLoc = 0;
-		yLoc = 0;
+		xLoc = 4;
+		yLoc = 4;
 		width = regularWidth;
 		height = 64;
 		facingRight = false;
