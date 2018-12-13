@@ -4,51 +4,47 @@ import java.awt.Image;
 
 import com.engine.Engine;
 import com.engine.Keybinds;
+import com.engine.drawingComponent;
 
 public class Player extends Characters{
-
-	public double xLoc;
-	public double yLoc;
-	
-	public int width;
-	public int regularWidth=32;
-	public int mirroredWidth=-32;
-	public int height;
-	
-	public boolean facingRight;
-	
-	public double defaultRunSpeed = 0.1;
-	public double runSpeed = defaultRunSpeed;
-	
-	Image charSprite;
 	
 	public Player() {
-		super("graphics/mario.png");
-		xLoc = 4;
-		yLoc = 4;
+		
+		this.charSprite = drawingComponent.loadImage("graphics/mario.png");
+		this.xLoc = 6;
+		this.yLoc = 6;
+		this.regularWidth = 32;
+		this.mirroredWidth = -this.regularWidth;
+		this.height = 64;
 		width = regularWidth;
-		height = 64;
-		facingRight = false;
-		charSprite = super.charSprite;
+		
+		this.defaultRunSpeed = 0.001;
+		this.runSpeed = defaultRunSpeed;
+		
+		this.facingRight = false;
 	}
 	
 	public void update() {
 		if(Keybinds.A) {
-			xLoc-=runSpeed;
+			horizontalVelocity-=runSpeed;
 			facingRight=false;
 		}
 		if(Keybinds.W) {
-			yLoc+=runSpeed;
+			verticalVelocity+=runSpeed;
 		}
 		if(Keybinds.S) {
-			yLoc-=runSpeed;
+			verticalVelocity-=runSpeed;
 		}
 		if(Keybinds.D) {
-			xLoc+=runSpeed;
+			horizontalVelocity+=runSpeed;
 			facingRight=true;
 		}
 		if(Keybinds.SHIFT) {
-			runSpeed = defaultRunSpeed*1.5;
+	//		runSpeed = defaultRunSpeed*1.5;
+			xLoc = 6;
+			yLoc = 6;
+			horizontalVelocity = 0;
+			verticalVelocity = 0;
 		}else {
 			runSpeed = defaultRunSpeed;
 		}
@@ -57,6 +53,14 @@ public class Player extends Characters{
 		}
 		if(!facingRight) {
 			width = regularWidth;
+		}
+		
+		xLoc+=horizontalVelocity;
+		yLoc+=verticalVelocity;
+		
+		if(CollisionDetection.checkCollision(this, Engine.returnGoomba())) {
+			xLoc = 12;
+			yLoc = 12;
 		}
 		
 	}

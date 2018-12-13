@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.awt.image.ImageObserver;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import com.entities.Goomba;
 import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
 
@@ -24,6 +26,7 @@ public class drawingComponent extends JComponent {
 
 	static Font font;
 	Player p1 = Engine.returnPlayer();
+	Goomba g1 = Engine.returnGoomba();
 	
 	int frameWidth = super.getWidth();
 	int frameHeight = super.getHeight();
@@ -42,39 +45,29 @@ public class drawingComponent extends JComponent {
 		frameWidth = super.getWidth();
 		frameHeight = super.getHeight();
 		
-//		for(double xPixel=0;xPixel<frameWidth;xPixel+=(frameWidth/16)) {
-//			for(double yPixel=0;yPixel<frameHeight;yPixel+=(frameHeight/16)) {
-//			int xBlock =(int) Math.floor((xPixel/frameWidth)*16);
-//			int yBlock =(int) Math.floor((yPixel/frameHeight)*16);
-//			
-//			int xLocation =(int) Math.round(frameWidth - xPixel);
-//			int yLocation =(int) Math.round(frameHeight - yPixel);
-//			
-//			int xScale = frameWidth/16;
-//			int yScale = frameHeight/16;
-//			
-//			g2d.drawImage(WorldGenerator.loadBlock(xBlock, yBlock), xLocation, yLocation, xScale, yScale, null);
-//			
-//			}
-//			}
-		
 		for(int i=0;i<xBlockCount;i++) {
 			for(int k=0;k<yBlockCount;k++) {
 			
-			drawFromCenter(WorldGenerator.loadBlock(i, k), i, k, 32, 32, g2d);
+			drawImageFromCenter(WorldGenerator.loadBlock(i, k), i, k, 32, 32, g2d);
 			}
 		}
 		
 	}
 	
 	public void drawEntities(Graphics2D g2d) {
-		drawFromCenter(p1.returnSprite(), p1.xLoc, p1.yLoc, p1.width, p1.height, g2d);
+		drawImageFromCenter(p1.returnSprite(), p1.xLoc, p1.yLoc, p1.width, p1.height, g2d);
+		drawImageFromCenter(g1.returnSprite(), g1.xLoc, g1.yLoc, g1.width, g1.height, g2d);
+		g2d.draw(p1.getHitbox());
+		g2d.draw(g1.getHitbox());
 	}
 	
-	public void drawFromCenter(Image i, double xLoc, double yLoc, int width, int height, Graphics2D g2d) {
-		System.out.println(p1.xLoc+"x"+p1.yLoc);
+	public void drawImageFromCenter(Image i, double xLoc, double yLoc, int width, int height, Graphics2D g2d) {
 		g2d.drawImage(i, (int) (xLoc*32-width/2), (int) (frameHeight-(yLoc*32-height/2)),width,height,null);
 	}
+	
+//	public void drawShapeFromCenter(Shape s, Graphics2D g2d) {
+//		g2d.drawRect(arg0, arg1, arg2, arg3);
+//	}
 
 	public static BufferedImage loadImage(String imageName) {
 
