@@ -58,7 +58,7 @@ public class Player extends Characters{
 		xLoc+=horizontalVelocity;
 		yLoc+=verticalVelocity;
 		
-		if(CollisionDetection.checkCollision(this, Engine.returnGoomba())) {
+		if(CollisionDetection.checkCollision(this, ) {
 			xLoc = 12;
 			yLoc = 12;
 		}

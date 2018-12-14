@@ -5,7 +5,8 @@ import java.awt.Image;
 import com.worldGeneration.WorldGenerator;
 
 public class Stone extends Blocks{
-	public Stone(){
+	public Stone(int xLoc, int yLoc){
+		super(xLoc, yLoc);
 		this.solid = true;
 		this.affectedByGravity = false;
 		this.image = WorldGenerator.loadImage("graphics/stone.jpg");

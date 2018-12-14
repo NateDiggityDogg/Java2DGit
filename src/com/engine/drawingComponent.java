@@ -18,6 +18,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import com.blocks.Blocks;
 import com.entities.Goomba;
 import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
@@ -30,9 +31,6 @@ public class drawingComponent extends JComponent {
 	
 	int frameWidth = super.getWidth();
 	int frameHeight = super.getHeight();
-	
-	int xBlockCount = 16;
-	int yBlockCount = 16;
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -45,10 +43,11 @@ public class drawingComponent extends JComponent {
 		frameWidth = super.getWidth();
 		frameHeight = super.getHeight();
 		
-		for(int i=0;i<xBlockCount;i++) {
-			for(int k=0;k<yBlockCount;k++) {
-			
-			drawImageFromCenter(WorldGenerator.loadBlock(i, k), i, k, 32, 32, g2d);
+		for(int i=0;i<WorldGenerator.world.length;i++) {
+			for(int k=0;k<WorldGenerator.world[0].length;k++) {
+			Blocks block = WorldGenerator.loadBlock(i, k);
+			drawImageFromCenter(block.returnImage(), i, k, block.width, block.height, g2d);
+			g2d.draw(WorldGenerator.loadHitbox(i, k));
 			}
 		}
 		
@@ -57,8 +56,6 @@ public class drawingComponent extends JComponent {
 	public void drawEntities(Graphics2D g2d) {
 		drawImageFromCenter(p1.returnSprite(), p1.xLoc, p1.yLoc, p1.width, p1.height, g2d);
 		drawImageFromCenter(g1.returnSprite(), g1.xLoc, g1.yLoc, g1.width, g1.height, g2d);
-		g2d.draw(p1.getHitbox());
-		g2d.draw(g1.getHitbox());
 	}
 	
 	public void drawImageFromCenter(Image i, double xLoc, double yLoc, int width, int height, Graphics2D g2d) {

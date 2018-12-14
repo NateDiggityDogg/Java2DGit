@@ -1,6 +1,7 @@
 package com.worldGeneration;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,34 +21,44 @@ import com.blocks.StoneBroken3;
 import com.blocks.Water;
 
 public class WorldGenerator{
-	
-	static int mapSize = 16;
-	static int[][] world = new int[][]{
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,4,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0}
+
+	public static int[][] world = new int[][]{
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,3,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,3,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,3,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 	
 	static Map<String, Integer> map = new HashMap<>();
-	static Map<Integer, Blocks> blocks = new HashMap<>();
+	static Map<String, Blocks> blocks = new HashMap<>();
 	
 	public static void loadMapHashMap() {
 		map = new HashMap<>();
-		for(int i=0;i<mapSize;i++) {
-			for(int k=0;k<mapSize;k++) {
+		for(int i=0;i<world.length;i++) {
+			for(int k=0;k<world[0].length;k++) {
 				map.put(i+"x"+k, world[i][k]);
 			}
 		}
@@ -55,24 +66,46 @@ public class WorldGenerator{
 	
 	public static void loadBlockHashMap() {
 		blocks = new HashMap<>();
-		blocks.put(0, new Sky());
-		blocks.put(1, new Dirt());
-		blocks.put(2, new Grass());
-		blocks.put(3, new Stone());
-		blocks.put(4, new StoneBroken());
-		blocks.put(5, new StoneBroken2());
-		blocks.put(6, new StoneBroken3());
-		blocks.put(7, new Water());
+		for(int i=0;i<world.length;i++) {
+			for(int k=0;k<world[0].length;k++) {
+				Blocks selected;
+					switch(world[i][k]) {
+				case 0:
+					selected = new Sky(i,k);
+					break;
+				case 1:
+					selected = new Dirt(i,k);
+					break;
+				case 2:
+					selected = new Grass(i,k);
+					break;
+				case 3:
+					selected = new Stone(i,k);
+					break;
+				case 4:
+					selected = new StoneBroken(i,k);
+					break;
+				default:
+					selected = null;
+					break;
+				}
+				blocks.put(i+"x"+k, selected);
+			}
+		}
 
 	}
 	
-	public static int getBlockID(int x, int y) {
-		return map.get(x+"x"+y);
+	public static Blocks loadBlock(int x, int y) {
+//		System.out.println("Got block # " + getBlockID(x,y));
+		return blocks.get(x+"x"+y);
 	}
 	
-	public static Image loadBlock(int x, int y) {
-//		System.out.println("Got block # " + getBlockID(x,y));
-		return blocks.get(getBlockID(x,y)).returnImage();	
+	public static Rectangle loadHitbox(int x, int y) {
+		return blocks.get(x+"x"+y).getHitbox();
+	}
+	
+	public static Blocks getBlockAt(int x, int y) {
+		return blocks.get(x+"x"+y);
 	}
 	
 	public static BufferedImage loadImage(String imageName) {
