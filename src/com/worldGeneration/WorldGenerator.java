@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.blocks.Blocks;
+import com.blocks.Block;
 import com.blocks.Dirt;
 import com.blocks.Grass;
 import com.blocks.Sky;
@@ -53,7 +53,7 @@ public class WorldGenerator{
 	};
 	
 	static Map<String, Integer> map = new HashMap<>();
-	static Map<String, Blocks> blocks = new HashMap<>();
+	static Map<String, Block> blocks = new HashMap<>();
 	
 	public static void loadMapHashMap() {
 		map = new HashMap<>();
@@ -68,7 +68,7 @@ public class WorldGenerator{
 		blocks = new HashMap<>();
 		for(int i=0;i<world.length;i++) {
 			for(int k=0;k<world[0].length;k++) {
-				Blocks selected;
+				Block selected;
 					switch(world[i][k]) {
 				case 0:
 					selected = new Sky(i,k);
@@ -95,16 +95,20 @@ public class WorldGenerator{
 
 	}
 	
-	public static Blocks loadBlock(int x, int y) {
+	public static Block loadBlock(int x, int y) {
 //		System.out.println("Got block # " + getBlockID(x,y));
 		return blocks.get(x+"x"+y);
+	}
+	
+	public static Block[] getBlockMapOf(Block b) {
+		return null;
 	}
 	
 	public static Rectangle loadHitbox(int x, int y) {
 		return blocks.get(x+"x"+y).getHitbox();
 	}
 	
-	public static Blocks getBlockAt(int x, int y) {
+	public static Block getBlockAt(int x, int y) {
 		return blocks.get(x+"x"+y);
 	}
 	

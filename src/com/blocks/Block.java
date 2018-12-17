@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import com.engine.Engine;
 
-public class Blocks {
+public class Block {
 	boolean solid;
 	boolean affectedByGravity;
 	
@@ -17,7 +17,7 @@ public class Blocks {
 	
 	Image image;
 	
-	Blocks (int xLoc, int yLoc){
+	Block(int xLoc, int yLoc){
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
 		this.width = 32;

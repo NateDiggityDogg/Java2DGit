@@ -5,6 +5,7 @@ import java.awt.Image;
 import com.engine.Engine;
 import com.engine.Keybinds;
 import com.engine.drawingComponent;
+import com.worldGeneration.WorldGenerator;
 
 public class Player extends Characters{
 	
@@ -58,7 +59,7 @@ public class Player extends Characters{
 		xLoc+=horizontalVelocity;
 		yLoc+=verticalVelocity;
 		
-		if(CollisionDetection.checkCollision(this, ) {
+		if(CollisionDetection.checkCollision(this, WorldGenerator.getBlockAt(4,4))) {
 			xLoc = 12;
 			yLoc = 12;
 		}

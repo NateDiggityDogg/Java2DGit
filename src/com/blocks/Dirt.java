@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import com.worldGeneration.WorldGenerator;
 
-public class Dirt extends Blocks{
+public class Dirt extends Block{
 	public Dirt(int xLoc, int yLoc){
 	super(xLoc, yLoc);
 	this.solid = true;

@@ -18,7 +18,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-import com.blocks.Blocks;
+import com.blocks.Block;
 import com.entities.Goomba;
 import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
@@ -45,7 +45,7 @@ public class drawingComponent extends JComponent {
 		
 		for(int i=0;i<WorldGenerator.world.length;i++) {
 			for(int k=0;k<WorldGenerator.world[0].length;k++) {
-			Blocks block = WorldGenerator.loadBlock(i, k);
+			Block block = WorldGenerator.loadBlock(i, k);
 			drawImageFromCenter(block.returnImage(), i, k, block.width, block.height, g2d);
 			g2d.draw(WorldGenerator.loadHitbox(i, k));
 			}

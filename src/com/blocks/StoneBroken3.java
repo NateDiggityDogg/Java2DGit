@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import com.worldGeneration.WorldGenerator;
 
-public class StoneBroken3 extends Blocks{
+public class StoneBroken3 extends Block{
 	public StoneBroken3(int xLoc, int yLoc){
 		super(xLoc, yLoc);
 		this.solid = true;

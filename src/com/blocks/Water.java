@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import com.worldGeneration.WorldGenerator;
 
-public class Water extends Blocks{
+public class Water extends Block{
 	public Water(int xLoc, int yLoc){
 		super(xLoc, yLoc);
 		this.solid = true;
