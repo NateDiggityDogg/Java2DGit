@@ -9,11 +9,9 @@ import com.worldGeneration.WorldGenerator;
 
 public class Player extends Characters{
 	
-	public Player() {
-		
+	public Player(int xLoc, int yLoc) {
+		super(xLoc, yLoc);
 		this.charSprite = drawingComponent.loadImage("graphics/mario.png");
-		this.xLoc = 6;
-		this.yLoc = 6;
 		this.regularWidth = 32;
 		this.mirroredWidth = -this.regularWidth;
 		this.height = 64;
@@ -59,9 +57,8 @@ public class Player extends Characters{
 		xLoc+=horizontalVelocity;
 		yLoc+=verticalVelocity;
 		
-		if(CollisionDetection.checkCollision(this, WorldGenerator.getBlockAt(4,4))) {
-			xLoc = 12;
-			yLoc = 12;
+		if(CollisionDetection.checkCollision(this, Engine.returnGoombas())) {
+			
 		}
 		
 	}

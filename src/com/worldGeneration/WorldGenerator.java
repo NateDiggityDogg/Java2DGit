@@ -100,7 +100,7 @@ public class WorldGenerator{
 		return blocks.get(x+"x"+y);
 	}
 	
-	public static Block[] getBlockMapOf(Block b) {
+	public static Block[] getBlockMapOf() {
 		return null;
 	}
 	

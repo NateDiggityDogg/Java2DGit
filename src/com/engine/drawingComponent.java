@@ -19,21 +19,22 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.blocks.Block;
+import com.entities.Characters;
 import com.entities.Goomba;
 import com.entities.Player;
 import com.worldGeneration.WorldGenerator;
 
 public class drawingComponent extends JComponent {
 
-	static Font font;
+	Graphics2D g2d;
+	Font font;
 	Player p1 = Engine.returnPlayer();
-	Goomba g1 = Engine.returnGoomba();
-	
+	Goomba[] goombas = Engine.returnGoombas();
 	int frameWidth = super.getWidth();
 	int frameHeight = super.getHeight();
 
 	public void paintComponent(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+		g2d = (Graphics2D) g;
 		drawWorld(g2d);
 		drawEntities(g2d);
 	}
@@ -46,7 +47,7 @@ public class drawingComponent extends JComponent {
 		for(int i=0;i<WorldGenerator.world.length;i++) {
 			for(int k=0;k<WorldGenerator.world[0].length;k++) {
 			Block block = WorldGenerator.loadBlock(i, k);
-			drawImageFromCenter(block.returnImage(), i, k, block.width, block.height, g2d);
+			drawImageFromCenter(block.returnImage(), i, k, block.width, block.height);
 			g2d.draw(WorldGenerator.loadHitbox(i, k));
 			}
 		}
@@ -54,12 +55,22 @@ public class drawingComponent extends JComponent {
 	}
 	
 	public void drawEntities(Graphics2D g2d) {
-		drawImageFromCenter(p1.returnSprite(), p1.xLoc, p1.yLoc, p1.width, p1.height, g2d);
-		drawImageFromCenter(g1.returnSprite(), g1.xLoc, g1.yLoc, g1.width, g1.height, g2d);
+		drawCharacter(p1);
+		drawCharacter(goombas);
 	}
 	
-	public void drawImageFromCenter(Image i, double xLoc, double yLoc, int width, int height, Graphics2D g2d) {
-		g2d.drawImage(i, (int) (xLoc*32-width/2), (int) (frameHeight-(yLoc*32-height/2)),width,height,null);
+	public void drawImageFromCenter(Image i, double xLoc, double yLoc, int width, int height) {
+		this.g2d.drawImage(i, (int) (xLoc*32-width/2), (int) (frameHeight-(yLoc*32-height/2)),width,height,null);
+	}
+	
+	public void drawCharacter(Characters c) {
+		drawImageFromCenter(c.returnSprite(), c.xLoc, c.yLoc, c.width, c.height);
+	}
+	
+	public void drawCharacter(Characters[] chars) {
+		for(int c = 0;c<chars.length;c++) {
+		drawImageFromCenter(chars[c].returnSprite(), chars[c].xLoc, chars[c].yLoc, chars[c].width, chars[c].height);
+		}
 	}
 	
 //	public void drawShapeFromCenter(Shape s, Graphics2D g2d) {

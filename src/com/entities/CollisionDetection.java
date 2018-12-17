@@ -14,6 +14,16 @@ public class CollisionDetection {
 	}
 }
 	
+	public static boolean checkCollision(Characters c1, Characters[] c2) {
+		for(int i=0;i<c2.length;i++) {
+			if(c1.getHitbox().intersects(c2[i].getHitbox())){
+				System.out.println("Collision!");
+				return true;
+			}
+		}
+		return false;
+		}
+	
 	public static boolean checkCollision(Characters c1, Block c2) {
 		if(c1.getHitbox().intersects(c2.getHitbox())){
 			System.out.println("Collision!");
@@ -21,5 +31,16 @@ public class CollisionDetection {
 		}else {
 			return false;
 	}
-}
+	}
+		
+		public static boolean checkCollision(Characters c1, Block[] c2) {
+			for(int i=0;i<c2.length;i++) {
+				if(c1.getHitbox().intersects(c2[i].getHitbox())){
+					System.out.println("Collision!");
+					return true;
+				}
+			}
+			return false;
+			}
+	
 }

@@ -19,7 +19,7 @@ import com.worldGeneration.WorldGenerator;
 		static JFrame gameFrame;
 		static Player p1;
 		
-		static Goomba goomba1;
+		static Goomba[] goombas;
 		
 		public static int screenWidth;
 		public static int screenHeight;
@@ -34,8 +34,12 @@ import com.worldGeneration.WorldGenerator;
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 		
-		p1 = new Player();
-		goomba1 = new Goomba();
+		p1 = new Player(4,4);
+		goombas = new Goomba[4];
+		goombas[0] = new Goomba(2,8);
+		goombas[1] = new Goomba(3,8);
+		goombas[2] = new Goomba(4,8);
+		goombas[3] = new Goomba(5,8);
 		gameFrame = new JFrame();
 	
 			WorldGenerator.loadBlockHashMap();
@@ -70,8 +74,8 @@ import com.worldGeneration.WorldGenerator;
 		return p1;
 	}
 	
-	public static Goomba returnGoomba() {
-		return goomba1;
+	public static Goomba[] returnGoombas() {
+		return goombas;
 	}
 	
 	public static drawingComponent returnDrawingComponent() {
@@ -80,6 +84,5 @@ import com.worldGeneration.WorldGenerator;
 	
 	public static void tick() {
 		p1.update();
-		CollisionDetection.checkCollision(p1, goomba1);
 	}
 }

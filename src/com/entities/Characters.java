@@ -27,6 +27,11 @@ public class Characters {
 	public double defaultRunSpeed;
 	public double runSpeed;
 	
+	Characters(int xLoc, int yLoc){
+		this.xLoc = xLoc;
+		this.yLoc = yLoc;
+	}
+	
 	static Image convertString(String entityID) {
 		return com.engine.drawingComponent.loadImage(entityID);
 	}
