@@ -7,7 +7,7 @@ import com.worldGeneration.WorldGenerator;
 public class Sky extends Block{
 	public Sky(int xLoc, int yLoc){
 		super(xLoc, yLoc);
-		this.solid = true;
+		this.solid = false;
 		this.affectedByGravity = false;
 		this.image = WorldGenerator.loadImage("graphics/sky.jpg");
 		}

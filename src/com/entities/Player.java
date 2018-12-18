@@ -57,8 +57,8 @@ public class Player extends Characters{
 		xLoc+=horizontalVelocity;
 		yLoc+=verticalVelocity;
 		
-		if(CollisionDetection.checkCollision(this, Engine.returnGoombas())) {
-			
+		if(CollisionDetection.checkCollisionIfSolid(this, WorldGenerator.getLoadedBlocks())) {
+			yLoc = 25;
 		}
 		
 	}

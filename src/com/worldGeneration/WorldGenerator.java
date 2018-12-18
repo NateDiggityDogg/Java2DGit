@@ -100,16 +100,16 @@ public class WorldGenerator{
 		return blocks.get(x+"x"+y);
 	}
 	
-	public static Block[] getBlockMapOf() {
-		return null;
-	}
-	
 	public static Rectangle loadHitbox(int x, int y) {
 		return blocks.get(x+"x"+y).getHitbox();
 	}
 	
 	public static Block getBlockAt(int x, int y) {
 		return blocks.get(x+"x"+y);
+	}
+	
+	public static Block[] getLoadedBlocks() {
+		return blocks.values().toArray(new Block[0]);
 	}
 	
 	public static BufferedImage loadImage(String imageName) {

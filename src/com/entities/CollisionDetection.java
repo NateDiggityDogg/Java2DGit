@@ -42,5 +42,15 @@ public class CollisionDetection {
 			}
 			return false;
 			}
+		
+		public static boolean checkCollisionIfSolid(Characters c1, Block[] c2) {
+			for(int i=0;i<c2.length;i++) {
+				if(c1.getHitbox().intersects(c2[i].getHitbox()) && c2[i].isSolid()){
+					System.out.println("Collision!");
+					return true;
+				}
+			}
+			return false;
+			}
 	
 }
