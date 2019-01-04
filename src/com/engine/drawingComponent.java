@@ -37,6 +37,7 @@ public class drawingComponent extends JComponent {
 		g2d = (Graphics2D) g;
 		drawWorld(g2d);
 		drawEntities(g2d);
+		g2d.draw(p1.getPreviousHitbox(75));
 	}
 	
 	public void drawWorld(Graphics2D g2d) {
@@ -48,7 +49,7 @@ public class drawingComponent extends JComponent {
 			for(int k=0;k<WorldGenerator.world[0].length;k++) {
 			Block block = WorldGenerator.loadBlock(i, k);
 			drawImageFromCenter(block.returnImage(), i, k, block.width, block.height);
-			g2d.draw(WorldGenerator.loadHitbox(i, k));
+			//g2d.draw(WorldGenerator.loadHitbox(i, k));
 			}
 		}
 		

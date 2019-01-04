@@ -43,14 +43,28 @@ public class CollisionDetection {
 			return false;
 			}
 		
-		public static boolean checkCollisionIfSolid(Characters c1, Block[] c2) {
+		public static int checkCollisionIfSolid(Characters c1, Block[] c2) {
+			int k = 0;
 			for(int i=0;i<c2.length;i++) {
 				if(c1.getHitbox().intersects(c2[i].getHitbox()) && c2[i].isSolid()){
 					System.out.println("Collision!");
-					return true;
+					k++;
 				}
 			}
-			return false;
+			return k;
+			}
+		
+		public static Block[] returnCollisionSolidBlock(Characters c1, Block[] c2) {
+			Block[] blocks = new Block[12];
+			int count = 0;
+			for(int i=0;i<c2.length;i++) {
+				if(c1.getHitbox().intersects(c2[i].getHitbox()) && c2[i].isSolid()){
+					System.out.println("Collision!");
+					blocks[count] = c2[i];
+					count++;
+				}
+			}
+			return blocks;
 			}
 	
 }

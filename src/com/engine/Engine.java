@@ -36,10 +36,10 @@ import com.worldGeneration.WorldGenerator;
 		
 		p1 = new Player(4,4);
 		goombas = new Goomba[4];
-		goombas[0] = new Goomba(2,8);
+		goombas[0] = new Goomba(1,8);
 		goombas[1] = new Goomba(3,8);
-		goombas[2] = new Goomba(4,8);
-		goombas[3] = new Goomba(5,8);
+		goombas[2] = new Goomba(3.5,8);
+		goombas[3] = new Goomba(8,8);
 		gameFrame = new JFrame();
 	
 			WorldGenerator.loadBlockHashMap();
@@ -84,5 +84,8 @@ import com.worldGeneration.WorldGenerator;
 	
 	public static void tick() {
 		p1.update();
+		for(int i=0; i<goombas.length;i++) {
+			goombas[i].update();
+		}
 	}
 }

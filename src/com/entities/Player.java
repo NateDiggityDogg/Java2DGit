@@ -9,7 +9,7 @@ import com.worldGeneration.WorldGenerator;
 
 public class Player extends Characters{
 	
-	public Player(int xLoc, int yLoc) {
+	public Player(double xLoc, double yLoc) {
 		super(xLoc, yLoc);
 		this.charSprite = drawingComponent.loadImage("graphics/mario.png");
 		this.regularWidth = 32;
@@ -41,7 +41,7 @@ public class Player extends Characters{
 		if(Keybinds.SHIFT) {
 	//		runSpeed = defaultRunSpeed*1.5;
 			xLoc = 6;
-			yLoc = 6;
+			yLoc = 12;
 			horizontalVelocity = 0;
 			verticalVelocity = 0;
 		}else {
@@ -53,14 +53,7 @@ public class Player extends Characters{
 		if(!facingRight) {
 			width = regularWidth;
 		}
-		
-		xLoc+=horizontalVelocity;
-		yLoc+=verticalVelocity;
-		
-		if(CollisionDetection.checkCollisionIfSolid(this, WorldGenerator.getLoadedBlocks())) {
-			yLoc = 25;
-		}
-		
+		super.update();
 	}
 	
 }
